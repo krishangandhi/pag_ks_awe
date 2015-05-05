@@ -1,0 +1,50 @@
+Particle
+{
+	flags				usePhysics impactKills
+
+	spawnFlags			orgOnCylinder
+
+	count				20
+
+	life				5000
+	
+	cullrange			1800
+	
+	origin				0 0 0 -200 0 0
+
+	radius				1000 30
+
+	rotation			320 -360
+
+	rotationDelta		100 -100
+
+	velocity			-500 25 25 -500 -25 -25
+
+	gravity				-200
+
+	rgb
+	{
+		start			0.8941 0.8941 0.8941 0.6275 0.6275 0.6431
+		end				0.7529 0.7529 0.7608 0.502 0.502 0.502
+		flags			random linear
+	}
+
+	alpha
+	{
+		start				.4
+		end				.8
+		flags			linear
+	}
+
+	size
+	{
+		start			8 4
+		end				12 4
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/effects/snowplug
+	]
+}

@@ -457,6 +457,11 @@ Callback_PlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sW
 {
 	if(self.sessionteam == "spectator")
 		return;
+	
+	if(sWeapon == "mosin_nagant_mp" || sWeapon == "kar98k_mp") 
+	{
+		iDamage = 1000;
+	}
 
 	// Don't do knockback if the damage direction was not specified
 	if(!isDefined(vDir))

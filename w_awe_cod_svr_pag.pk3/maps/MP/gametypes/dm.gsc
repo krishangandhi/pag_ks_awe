@@ -198,7 +198,7 @@ Callback_StartGameType()
 	setClientNameMode("auto_change");
 
 	thread startGame();
-//	thread addBotClients(); // For development testing
+	thread addBotClients(); // For development testing
 	thread updateGametypeCvars();
 }
 

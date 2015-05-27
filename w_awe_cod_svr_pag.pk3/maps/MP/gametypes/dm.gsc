@@ -530,10 +530,33 @@ Callback_PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDi
 	if(self.sessionteam == "spectator")
 		return;
 
+<<<<<<< HEAD
 		
 		
 		
 		
+=======
+//////////////////First blood sound/////////////////////
+   if(level.fb_firstblood && !isdefined(self.switching_teams))
+	   {
+		players = getentarray("player", "classname");
+		if(isplayer(attacker))
+		{
+			name = attacker.name;
+			iprintln("^1First Blood goes to: " + name);
+			name = self.name;
+			iprintln("^3The victim was: " + name);
+/*
+			for(i=0;i < players.size;i++)
+			{
+			players[i] playLocalSound("firstblood");
+			}
+*/
+		}
+		level.fb_firstblood = false;
+	}															
+//////////////////////////////////////////////////////////
+>>>>>>> origin/first-blood
 
 /////////// Added by AWE ///////////
 	self thread maps\mp\gametypes\_awe::PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc);

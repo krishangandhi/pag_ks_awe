@@ -514,6 +514,13 @@ Callback_PlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sW
 Callback_PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc)
 {
 	self endon("spawned");
+	
+////////////////////////////////////////////////////////////////////        
+        self thread Check_for_EndofRampage(attacker);
+        self.pers["kill_spree"] = 0;
+        attacker.pers["kill_spree"]++;
+        attacker thread Check_for_Rampage();
+/////////////////////////////////////////////////////////////////////
 
 	if(self.sessionteam == "spectator")
 		return;

@@ -208,6 +208,10 @@ Callback_PlayerConnect()
 	self waittill("begin");
 	self.statusicon = "";
 
+//////////////////////////////////////////////////////////
+  self.pers["kill_spree"] = 0;
+//////////////////////////////////////////////////////////
+
 	iprintln(&"MPSCRIPT_CONNECTED", self);
 
 	lpselfnum = self getEntityNumber();
@@ -515,9 +519,21 @@ Callback_PlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sW
 Callback_PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc)
 {
 	self endon("spawned");
+	
+////////////////////////////////////////////////////////////////////        
+        self thread Check_for_EndofRampage(attacker);
+        self.pers["kill_spree"] = 0;
+        attacker.pers["kill_spree"]++;
+        attacker thread Check_for_Rampage();
+/////////////////////////////////////////////////////////////////////
 
 	if(self.sessionteam == "spectator")
 		return;
+
+		
+		
+		
+		
 
 /////////// Added by AWE ///////////
 	self thread maps\mp\gametypes\_awe::PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc);
@@ -527,9 +543,70 @@ Callback_PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDi
 	if(sHitLoc == "head" && sMeansOfDeath != "MOD_MELEE")
 		sMeansOfDeath = "MOD_HEAD_SHOT";
 
-	// send out an obituary message to all clients about the kill
+	 if(sMeansOfDeath == "MOD_HEAD_SHOT")
+	{     
+//		attacker maps\mp\gametypes\_damagefeedback::headshotsound();
+//	    self maps\mp\gametypes\_damagefeedback::headshotsound();
+	}
+		if(sMeansOfDeath == "MOD_MELEE")
+	{
+//      self maps\mp\gametypes\_damagefeedback::humiliationsound();
+//      self maps\mp\gametypes\_damagefeedback::humiliationsound();
+	}
+    if(sMeansOfDeath == "MOD_SUICIDE")
+  {
+//      self maps\mp\gametypes\_damagefeedback::humiliationsound();    
+  }	
+  self thread Check_for_EndofRampage(self);
+     { 
+      hitlocation = ""; 
+
+      if(sHitLoc == "head") 
+         hitlocation = "Head "; 
+      if(sHitLoc == "helmet") 
+         hitlocation = "Helmet "; 
+      if(sHitLoc == "neck") 
+         hitlocation = "Neck "; 
+      if(sHitLoc == "torso_upper") 
+         hitlocation = "Upper Torso "; 
+      if(sHitLoc == "torso_lower") 
+         hitlocation = "Lower Torso "; 
+      if(sHitLoc == "right_arm_upper") 
+         hitlocation = "Upper Right Arm "; 
+      if(sHitLoc == "right_arm_lower") 
+         hitlocation = "Lower Right Arm "; 
+      if(sHitLoc == "right_hand") 
+         hitlocation = "Right Hand "; 
+      if(sHitLoc == "left_arm_upper") 
+         hitlocation = "Upper Left Arm "; 
+      if(sHitLoc == "left_arm_lower") 
+         hitlocation = "Lower Left Arm "; 
+      if(sHitLoc == "left_hand") 
+         hitlocation = "Left Hand "; 
+      if(sHitLoc == "right_leg_upper") 
+         hitlocation = "Upper Right Leg "; 
+      if(sHitLoc == "right_leg_lower") 
+         hitlocation = "Lower Right Leg "; 
+      if(sHitLoc == "right_foot") 
+         hitlocation = "Right Foot "; 
+      if(sHitLoc == "left_leg_upper") 
+         hitlocation = "Upper Left Leg "; 
+      if(sHitLoc == "left_leg_lower") 
+         hitlocation = "Lower Left Leg "; 
+      if(sHitLoc == "left_foot") 
+         hitlocation = "Left Foot "; 
+		 
+// send out an obituary message to all clients about the kill
 ////////// Removed by AWE ///////
-//	obituary(self, attacker, sWeapon, sMeansOfDeath);
+	obituary(self, attacker, sWeapon, sMeansOfDeath);
+	
+/*
+    range = distance(attacker.origin, self.origin); 
+    range_iso = (int)(range * 0.0254); ; 
+       
+    attacker iprintln("^3" + hitlocation + "^7shot from a distance of ^3" + range_iso + " ^7metres!"); 
+    self iprintln("^3" + hitlocation + "shot ^7from a distance of ^3" + range_iso + " ^7metres!");
+*/
 /////////////////////////////////
 
 	self.sessionstate = "dead";
@@ -580,6 +657,8 @@ Callback_PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDi
 	// Stop thread if map ended on this death
 	if(level.mapended)
 		return;
+	
+	}
 		
 //	self updateDeathArray();
 
@@ -741,6 +820,101 @@ spawnIntermission()
 		self spawn(spawnpoint.origin, spawnpoint.angles);
 	else
 		maps\mp\_utility::error("NO " + spawnpointname + " SPAWNPOINTS IN MAP");
+}
+
+///////////////////////////////Killing Spree sound and messages//////////////////////////
+Check_for_Rampage()
+{
+	name = self.name;
+	if (self.pers["kill_spree"] == 3)
+	{
+		wait 0.9;
+		iprintln("^7"+ name +"^7 is on a ^3Killing Spree^7 with 3 kills in a row");
+//		self maps\mp\gametypes\_damagefeedback::killingspreesound();
+	}
+	else if (self.pers["kill_spree"] == 5)
+	{
+		wait 0.9;
+		iprintln("^7"+ name +"^7 is on a ^3Rampage^7: with 5 kills in a row");
+//		self maps\mp\gametypes\_damagefeedback::rampagesound();
+	}
+	else if (self.pers["kill_spree"] == 7)
+	{
+		wait 0.9;
+		iprintln("^7"+ name +"^7 is ^3Dominating^7: with 7 kills in a row");
+//		self maps\mp\gametypes\_damagefeedback::dominatingsound();
+	}
+	else if (self.pers["kill_spree"] == 8)
+	{
+		wait 0.9;
+		iprintln("^7"+ name +"^7 is ^3Unstoppable^7: 8 kills in a row");
+//		self maps\mp\gametypes\_damagefeedback::unstoppablesound();
+	}
+	else if (self.pers["kill_spree"] == 9)
+	{
+		wait 0.9;
+		iprintln("^7"+ name +"^7 is a ^3Monster^7: 9 kills in a row");
+//		self maps\mp\gametypes\_damagefeedback::monstersound();
+	}
+	else if (self.pers["kill_spree"] == 10)
+	{
+		wait 0.9;
+		iprintln("^7"+ name +"^7 is ^3Wicked Sick^7: 10 kills in a row");
+//		self maps\mp\gametypes\_damagefeedback::wickedsicksound();	
+	}
+	else if (self.pers["kill_spree"] == 12)
+	{
+		wait 0.9;
+		iprintln("^7"+ name +"^7 is ^3Godlike^7: 12 kills in a row");
+//		self maps\mp\gametypes\_damagefeedback::godlikesound();
+
+	}
+	else if (self.pers["kill_spree"] >= 15)
+	{
+		wait 0.9;
+		iprintln("^7"+ name +"^7 : ^3HOLY SHIT^7: 15 kills in a row");
+//		self maps\mp\gametypes\_damagefeedback::holyshitsound();	
+	}
+}
+
+///////////////////Killing Spree Messages and Sounds /////////////////////////////////
+Check_for_EndofRampage(attacker)
+{
+	if (self.pers["kill_spree"] == 3)
+	{
+		iprintln(attacker.name + " Has Ended " + self.name + "^7's Killing Spree");
+//		self maps\mp\gametypes\_damagefeedback::dohsound();
+	}
+	else if (self.pers["kill_spree"] == 5)
+	{
+		iprintln(attacker.name + " Has Ended " + self.name + "^7's Rampage");
+//		self maps\mp\gametypes\_damagefeedback::enditsound();
+	}
+	else if (self.pers["kill_spree"] == 7)
+	{
+		iprintln(attacker.name + " Has Ended " + self.name + "^7's Domination");
+//		self maps\mp\gametypes\_damagefeedback::enditsound();
+	}
+	else if (self.pers["kill_spree"] == 8)
+	{
+		iprintln(attacker.name + " Has Ended " + self.name + "^7's Unstoppable Killing Spree");
+//		self maps\mp\gametypes\_damagefeedback::killspree_endsound();
+	}
+	else if (self.pers["kill_spree"] == 9)
+	{
+		iprintln(attacker.name + " Has Ended " + self.name + "^7's Monster Killing Spree");
+//		self maps\mp\gametypes\_damagefeedback::enditsound();
+	}
+	else if (self.pers["kill_spree"] == 10)
+	{
+		iprintln(attacker.name + " Has Ended " + self.name + "^7's Wicked Sick Killing Spree");
+//		self maps\mp\gametypes\_damagefeedback::hallelujah();
+	}
+	else if (self.pers["kill_spree"] ==12)
+	{
+		iprintln(attacker.name + " Has Ended " + self.name + "^7's God Like Killing Spree");
+//		self maps\mp\gametypes\_damagefeedback::hallelujah();
+	}
 }
 
 respawn()

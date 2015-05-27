@@ -590,10 +590,16 @@ Callback_PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDi
          hitlocation = "Lower Left Leg "; 
       if(sHitLoc == "left_foot") 
          hitlocation = "Left Foot "; 
+		 
+      range = distance(attacker.origin, self.origin); 
+      range_iso = (int(range * 0.0254)); 
+       
+      attacker iprintln("^1" + hitlocation + " shot ^7from a distance of ^2" + range_iso + " ^7meters!"); 
+      self iprintln("^1" + hitlocation + " shot ^7from a distance of ^2" + range_iso + " ^7meters!");
 
 // send out an obituary message to all clients about the kill
 ////////// Removed by AWE ///////
-//	obituary(self, attacker, sWeapon, sMeansOfDeath);
+	obituary(self, attacker, sWeapon, sMeansOfDeath);
 /////////////////////////////////
 
 	self.sessionstate = "dead";

@@ -546,12 +546,12 @@ Callback_PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDi
 			iprintln("^1First Blood goes to: " + name);
 			name = self.name;
 			iprintln("^3The victim was: " + name);
-/*
+
 			for(i=0;i < players.size;i++)
 			{
 			players[i] playLocalSound("firstblood");
 			}
-*/
+
 		}
 		level.fb_firstblood = false;
 	}															
@@ -568,17 +568,17 @@ Callback_PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDi
 
 	 if(sMeansOfDeath == "MOD_HEAD_SHOT")
 	{     
-//		attacker maps\mp\gametypes\_damagefeedback::headshotsound();
-//	    self maps\mp\gametypes\_damagefeedback::headshotsound();
+		attacker maps\mp\gametypes\_damagefeedback::headshotsound();
+	    self maps\mp\gametypes\_damagefeedback::headshotsound();
 	}
 		if(sMeansOfDeath == "MOD_MELEE")
 	{
-//      self maps\mp\gametypes\_damagefeedback::humiliationsound();
-//      self maps\mp\gametypes\_damagefeedback::humiliationsound();
+      self maps\mp\gametypes\_damagefeedback::humiliationsound();
+      self maps\mp\gametypes\_damagefeedback::humiliationsound();
 	}
     if(sMeansOfDeath == "MOD_SUICIDE")
   {
-//      self maps\mp\gametypes\_damagefeedback::humiliationsound();    
+      self maps\mp\gametypes\_damagefeedback::humiliationsound();    
   }	
   self thread Check_for_EndofRampage(self);
      { 
@@ -853,50 +853,50 @@ Check_for_Rampage()
 	{
 		wait 0.9;
 		iprintln("^7"+ name +"^7 is on a ^3Killing Spree^7 with 3 kills in a row");
-//		self maps\mp\gametypes\_damagefeedback::killingspreesound();
+		self maps\mp\gametypes\_damagefeedback::killingspreesound();
 	}
 	else if (self.pers["kill_spree"] == 5)
 	{
 		wait 0.9;
 		iprintln("^7"+ name +"^7 is on a ^3Rampage^7: with 5 kills in a row");
-//		self maps\mp\gametypes\_damagefeedback::rampagesound();
+		self maps\mp\gametypes\_damagefeedback::rampagesound();
 	}
 	else if (self.pers["kill_spree"] == 7)
 	{
 		wait 0.9;
 		iprintln("^7"+ name +"^7 is ^3Dominating^7: with 7 kills in a row");
-//		self maps\mp\gametypes\_damagefeedback::dominatingsound();
+		self maps\mp\gametypes\_damagefeedback::dominatingsound();
 	}
 	else if (self.pers["kill_spree"] == 8)
 	{
 		wait 0.9;
 		iprintln("^7"+ name +"^7 is ^3Unstoppable^7: 8 kills in a row");
-//		self maps\mp\gametypes\_damagefeedback::unstoppablesound();
+		self maps\mp\gametypes\_damagefeedback::unstoppablesound();
 	}
 	else if (self.pers["kill_spree"] == 9)
 	{
 		wait 0.9;
 		iprintln("^7"+ name +"^7 is a ^3Monster^7: 9 kills in a row");
-//		self maps\mp\gametypes\_damagefeedback::monstersound();
+		self maps\mp\gametypes\_damagefeedback::monstersound();
 	}
 	else if (self.pers["kill_spree"] == 10)
 	{
 		wait 0.9;
 		iprintln("^7"+ name +"^7 is ^3Wicked Sick^7: 10 kills in a row");
-//		self maps\mp\gametypes\_damagefeedback::wickedsicksound();	
+		self maps\mp\gametypes\_damagefeedback::wickedsicksound();	
 	}
 	else if (self.pers["kill_spree"] == 12)
 	{
 		wait 0.9;
 		iprintln("^7"+ name +"^7 is ^3Godlike^7: 12 kills in a row");
-//		self maps\mp\gametypes\_damagefeedback::godlikesound();
+		self maps\mp\gametypes\_damagefeedback::godlikesound();
 
 	}
 	else if (self.pers["kill_spree"] >= 15)
 	{
 		wait 0.9;
 		iprintln("^7"+ name +"^7 : ^3HOLY SHIT^7: 15 kills in a row");
-//		self maps\mp\gametypes\_damagefeedback::holyshitsound();	
+		self maps\mp\gametypes\_damagefeedback::holyshitsound();	
 	}
 }
 

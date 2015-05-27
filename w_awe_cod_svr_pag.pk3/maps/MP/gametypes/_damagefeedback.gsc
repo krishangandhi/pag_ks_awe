@@ -161,10 +161,10 @@ killspree_endsound()
 	}
 }
 
-slaughtersound()
+monstersound()
 {
   if(isPlayer(self))
   {
-	self playsound("slaughter");
+	self playsound("monsterkill");
 	}
 }

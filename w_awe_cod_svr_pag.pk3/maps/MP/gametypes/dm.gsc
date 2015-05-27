@@ -557,21 +557,22 @@ Callback_PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDi
 	// If the player was killed by a head shot, let players know it was a head shot kill
 	if(sHitLoc == "head" && sMeansOfDeath != "MOD_MELEE")
 		sMeansOfDeath = "MOD_HEAD_SHOT";
-
-	 if(sMeansOfDeath == "MOD_HEAD_SHOT")
+		
+	if(sMeansOfDeath == "MOD_HEAD_SHOT")
 	{     
 		attacker maps\mp\gametypes\_damagefeedback::headshotsound();
-	    self maps\mp\gametypes\_damagefeedback::headshotsound();
+		self maps\mp\gametypes\_damagefeedback::headshotsound();
 	}
-		if(sMeansOfDeath == "MOD_MELEE")
+    if(sMeansOfDeath == "MOD_MELEE")
 	{
-      self maps\mp\gametypes\_damagefeedback::humiliationsound();
-      self maps\mp\gametypes\_damagefeedback::humiliationsound();
+		attacker maps\mp\gametypes\_damagefeedback::humiliationsound();
+		self maps\mp\gametypes\_damagefeedback::humiliationsound();
 	}
+		
     if(sMeansOfDeath == "MOD_SUICIDE")
-  {
-      self maps\mp\gametypes\_damagefeedback::humiliationsound();    
-  }	
+	{
+		self maps\mp\gametypes\_damagefeedback::humiliationsound();    
+	}
   self thread Check_for_EndofRampage(self);
      { 
       hitlocation = ""; 

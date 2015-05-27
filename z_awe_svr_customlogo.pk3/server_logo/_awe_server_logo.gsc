@@ -15,7 +15,7 @@ logo() { level.awe_serverlogotext =
 
 ///// DON'T CHANGE ANYTHING ABOVE THIS LINE /////
 
-	&"^2http://awe.milliways.st"
+	&"^1[P^7*A*^1G]^7 Killing Spree Server, Turn Downloads On For A Greater Experience^1!"
 
 ///// DON'T CHANGE ANYTHING BELOW THIS LINE /////
 ;

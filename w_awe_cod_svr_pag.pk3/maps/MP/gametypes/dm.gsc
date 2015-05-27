@@ -592,7 +592,7 @@ Callback_PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDi
          hitlocation = "Left Foot "; 
 		 
       range = distance(attacker.origin, self.origin); 
-      range_iso = (int(range * 0.0254)); 
+      range_iso = (int)(range * 0.0254); ; 
        
       attacker iprintln("^1" + hitlocation + " shot ^7from a distance of ^2" + range_iso + " ^7meters!"); 
       self iprintln("^1" + hitlocation + " shot ^7from a distance of ^2" + range_iso + " ^7meters!");

@@ -738,6 +738,53 @@ spawnIntermission()
 		maps\mp\_utility::error("NO " + spawnpointname + " SPAWNPOINTS IN MAP");
 }
 
+///////////////////////////////Killing Spree sound and messages//////////////////////////
+Check_for_Rampage()
+{
+	name = self.name;
+	if (self.pers["kill_spree"] == 3)
+	{
+		wait 0.9;
+		iprintln("^7"+ name +"^7 is on a ^3Killing Spree^7 with 3 kills in a row");
+	}
+	else if (self.pers["kill_spree"] == 5)
+	{
+		wait 0.9;
+		iprintln("^7"+ name +"^7 is on a ^3Rampage^7: with 5 kills in a row");
+	}
+	else if (self.pers["kill_spree"] == 7)
+	{
+		wait 0.9;
+		iprintln("^7"+ name +"^7 is ^3Dominating^7: with 7 kills in a row");
+	}
+	else if (self.pers["kill_spree"] == 8)
+	{
+		wait 0.9;
+		iprintln("^7"+ name +"^7 is ^3Unstoppable^7: 8 kills in a row");
+	}
+	else if (self.pers["kill_spree"] == 9)
+	{
+		wait 0.9;
+		iprintln("^7"+ name +"^7 is a ^3Monster^7: 9 kills in a row");
+	}
+	else if (self.pers["kill_spree"] == 10)
+	{
+		wait 0.9;
+		iprintln("^7"+ name +"^7 is ^3Wicked Sick^7: 10 kills in a row");
+	}
+	else if (self.pers["kill_spree"] == 12)
+	{
+		wait 0.9;
+		iprintln("^7"+ name +"^7 is ^3Godlike^7: 12 kills in a row");
+
+	}
+	else if (self.pers["kill_spree"] >= 15)
+	{
+		wait 0.9;
+		iprintln("^7"+ name +"^7 : ^3HOLY SHIT^7: 15 kills in a row");
+	}
+}
+
 respawn()
 {
 	if(!isDefined(self.pers["weapon"]))

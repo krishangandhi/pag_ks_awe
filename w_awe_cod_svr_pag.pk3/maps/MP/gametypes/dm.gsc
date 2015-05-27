@@ -650,6 +650,8 @@ Callback_PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDi
 	// Stop thread if map ended on this death
 	if(level.mapended)
 		return;
+	
+	}
 		
 //	self updateDeathArray();
 

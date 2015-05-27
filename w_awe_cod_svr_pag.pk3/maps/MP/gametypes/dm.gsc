@@ -525,6 +525,11 @@ Callback_PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDi
 	if(self.sessionteam == "spectator")
 		return;
 
+		
+		
+		
+		
+
 /////////// Added by AWE ///////////
 	self thread maps\mp\gametypes\_awe::PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc);
 ////////////////////////////////////
@@ -533,7 +538,66 @@ Callback_PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDi
 	if(sHitLoc == "head" && sMeansOfDeath != "MOD_MELEE")
 		sMeansOfDeath = "MOD_HEAD_SHOT";
 
-	// send out an obituary message to all clients about the kill
+	 if(sMeansOfDeath == "MOD_HEAD_SHOT")
+	{     
+//		attacker maps\mp\gametypes\_damagefeedback::headshotsound();
+//	    self maps\mp\gametypes\_damagefeedback::headshotsound();
+	}
+		if(sMeansOfDeath == "MOD_MELEE")
+	{
+//      self maps\mp\gametypes\_damagefeedback::humiliationsound();
+//      self maps\mp\gametypes\_damagefeedback::humiliationsound();
+	}
+    if(sMeansOfDeath == "MOD_SUICIDE")
+  {
+//      self maps\mp\gametypes\_damagefeedback::humiliationsound();    
+  }	
+  self thread Check_for_EndofRampage(self);
+     { 
+      hitlocation = ""; 
+
+      if(sHitLoc == "head") 
+         hitlocation = "Head "; 
+      if(sHitLoc == "helmet") 
+         hitlocation = "Helmet "; 
+      if(sHitLoc == "neck") 
+         hitlocation = "Neck "; 
+      if(sHitLoc == "torso_upper") 
+         hitlocation = "Upper Torso "; 
+      if(sHitLoc == "torso_lower") 
+         hitlocation = "Lower Torso "; 
+      if(sHitLoc == "right_arm_upper") 
+         hitlocation = "Upper Right Arm "; 
+      if(sHitLoc == "right_arm_lower") 
+         hitlocation = "Lower Right Arm "; 
+      if(sHitLoc == "right_hand") 
+         hitlocation = "Right Hand "; 
+      if(sHitLoc == "left_arm_upper") 
+         hitlocation = "Upper Left Arm "; 
+      if(sHitLoc == "left_arm_lower") 
+         hitlocation = "Lower Left Arm "; 
+      if(sHitLoc == "left_hand") 
+         hitlocation = "Left Hand "; 
+      if(sHitLoc == "right_leg_upper") 
+         hitlocation = "Upper Right Leg "; 
+      if(sHitLoc == "right_leg_lower") 
+         hitlocation = "Lower Right Leg "; 
+      if(sHitLoc == "right_foot") 
+         hitlocation = "Right Foot "; 
+      if(sHitLoc == "left_leg_upper") 
+         hitlocation = "Upper Left Leg "; 
+      if(sHitLoc == "left_leg_lower") 
+         hitlocation = "Lower Left Leg "; 
+      if(sHitLoc == "left_foot") 
+         hitlocation = "Left Foot "; 
+
+      distance = distance(Attacker.origin , self.origin); 
+      meters = (int(distance * 0.254))/10; 
+       
+      attacker iprintln("^1" + hitlocation + " Shot ^7from a Distance of ^2" + meters + " ^7meters!"); 
+      self iprintln("^1" + hitlocation + " Shot ^7from a Distance of ^2" + meters + " ^7meters!");	
+
+// send out an obituary message to all clients about the kill
 ////////// Removed by AWE ///////
 //	obituary(self, attacker, sWeapon, sMeansOfDeath);
 /////////////////////////////////

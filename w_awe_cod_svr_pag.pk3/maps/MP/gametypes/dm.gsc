@@ -598,7 +598,7 @@ Callback_PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDi
 		 
 // send out an obituary message to all clients about the kill
 ////////// Removed by AWE ///////
-	obituary(self, attacker, sWeapon, sMeansOfDeath);
+//	obituary(self, attacker, sWeapon, sMeansOfDeath);
 	
 /*
     range = distance(attacker.origin, self.origin); 

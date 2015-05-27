@@ -804,6 +804,46 @@ Check_for_Rampage()
 	}
 }
 
+///////////////////Killing Spree Messages and Sounds /////////////////////////////////
+Check_for_EndofRampage(attacker)
+{
+	if (self.pers["kill_spree"] == 3)
+	{
+		iprintln(attacker.name + " Has Ended " + self.name + "^7's Killing Spree");
+//		self maps\mp\gametypes\_damagefeedback::dohsound();
+	}
+	else if (self.pers["kill_spree"] == 5)
+	{
+		iprintln(attacker.name + " Has Ended " + self.name + "^7's Rampage");
+//		self maps\mp\gametypes\_damagefeedback::enditsound();
+	}
+	else if (self.pers["kill_spree"] == 7)
+	{
+		iprintln(attacker.name + " Has Ended " + self.name + "^7's Domination");
+//		self maps\mp\gametypes\_damagefeedback::enditsound();
+	}
+	else if (self.pers["kill_spree"] == 8)
+	{
+		iprintln(attacker.name + " Has Ended " + self.name + "^7's Unstoppable Killing Spree");
+//		self maps\mp\gametypes\_damagefeedback::killspree_endsound();
+	}
+	else if (self.pers["kill_spree"] == 9)
+	{
+		iprintln(attacker.name + " Has Ended " + self.name + "^7's Monster Killing Spree");
+//		self maps\mp\gametypes\_damagefeedback::enditsound();
+	}
+	else if (self.pers["kill_spree"] == 10)
+	{
+		iprintln(attacker.name + " Has Ended " + self.name + "^7's Wicked Sick Killing Spree");
+//		self maps\mp\gametypes\_damagefeedback::hallelujah();
+	}
+	else if (self.pers["kill_spree"] ==12)
+	{
+		iprintln(attacker.name + " Has Ended " + self.name + "^7's God Like Killing Spree");
+//		self maps\mp\gametypes\_damagefeedback::hallelujah();
+	}
+}
+
 respawn()
 {
 	if(!isDefined(self.pers["weapon"]))

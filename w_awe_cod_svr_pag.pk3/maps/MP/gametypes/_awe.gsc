@@ -11931,21 +11931,21 @@ aweObituary(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc
 					
 		if(attacker == self) // Suicide?
 		{
-			iprintln(SelfColour + SelfName + "^5 Has killed Himself");
+			iprintln(SelfName + "^5 Has killed their self");
 			if(level.awe_obituarydeath)
 				self iprintlnbold("You killed yourself");
 		}
 		else if(sHitLoc != "none") // Hitloc?
 		{
-			iprintln(AttackerColour + AttackerName + "^7 killed " + SelfColour + SelfName + "^7 / " + sWeapon + " / " + sHitLoc + " / " + range_iso + "m");
+			iprintln(AttackerName + "^7 killed " + SelfName + "^7 / " + sWeapon + " / " + sHitLoc + " / " + range_iso + "m");
 			if(level.awe_obituarydeath)
-				self iprintlnbold("^7Killed by " + AttackerColour + AttackerName + "^7 /" + sWeapon + " / " + sHitLoc + " / " + range_iso + "m");
+				self iprintlnbold("^7Killed by " + AttackerName + "^7 /" + sWeapon + " / " + sHitLoc + " / " + range_iso + "m");
 		}
 		else // Catch the rest
 		{
-			iprintln(AttackerColour + AttackerName + "^7 killed " + SelfColour + SelfName + "^7 / " + sWeapon + " / " + range_iso + "m");
+			iprintln(AttackerName + "^7 killed " + SelfName + "^7 / " + sWeapon + " / " + range_iso + "m");
 			if(level.awe_obituarydeath)
-				self iprintlnbold("^7killed by " + AttackerColour + AttackerName + "^7 /" + sWeapon + " / " + range_iso + "m");
+				self iprintlnbold("^7killed by " + AttackerName + "^7 /" + sWeapon + " / " + range_iso + "m");
 		}
 	}
 	else  // Normal obituarys

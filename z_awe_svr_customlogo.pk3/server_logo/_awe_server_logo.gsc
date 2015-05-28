@@ -15,7 +15,7 @@ logo() { level.awe_serverlogotext =
 
 ///// DON'T CHANGE ANYTHING ABOVE THIS LINE /////
 
-	&"^1[P^7*A*^1G]^7 Killing Spree Server, Turn Downloads On For A Greater Experience^1!"
+	&"^7www^1.^7clanpag^1.^7com"
 
 ///// DON'T CHANGE ANYTHING BELOW THIS LINE /////
 ;
